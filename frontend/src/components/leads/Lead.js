@@ -15,30 +15,36 @@ export default connect(mapStateToProps, { getLeads, deleteLead })(
     render() {
       return (
         <Fragment>
-          <h3>Leads</h3>
-          <table className='table table-stripped'>
-            <thead>
-              <th>ID</th>
-              <th>Name</th>
-              <th>E-Mail</th>
-              <th>Message</th>
-            </thead>
-            <tbody>
-              {this.props.leads.map((lead) => (
+          <div className='container card card-body my-4'>
+            <h3>Leads</h3>
+            <hr />
+            <table className='table table-striped table-bordered'>
+              <thead className='bg-primary text-light'>
                 <tr>
-                  <td>{lead.id}</td>
-                  <td>{lead.name}</td>
-                  <td>{lead.email}</td>
-                  <td>{lead.message}</td>
-                  <td>
-                    <button className='btn btn-danger' onClick={() => this.props.deleteLead(lead.id)}>
-                      Delete
-                    </button>
-                  </td>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th>Message</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {this.props.leads.map((lead) => (
+                  <tr key={lead.id}>
+                    <td>{lead.id}</td>
+                    <td>{lead.name}</td>
+                    <td>{lead.email}</td>
+                    <td>{lead.message}</td>
+                    <td>
+                      <button className='btn btn-primary btn-block' onClick={() => this.props.deleteLead(lead.id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Fragment>
       );
     }

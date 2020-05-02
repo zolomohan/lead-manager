@@ -23,7 +23,8 @@ export default connect(null, { addLead })(
       return (
         <Fragment>
           <div className='container card card-body mt-4'>
-            <h3>Add New Lead</h3>
+            <h3>New Lead</h3>
+            <hr />
             <form onSubmit={this.onSubmit}>
               <div className='form-group'>
                 <label htmlFor='name'>Name</label>
