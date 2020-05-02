@@ -15,6 +15,11 @@ export default connect(null, { addLead })(
       event.preventDefault();
       const { name, email, message } = this.state;
       this.props.addLead({ name, email, message });
+      this.setState({
+        name: "",
+        email: "",
+        message: "",
+      });
     };
 
     render() {
