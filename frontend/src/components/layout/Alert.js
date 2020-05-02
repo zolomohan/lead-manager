@@ -20,12 +20,8 @@ class Alert extends Component {
         alert.error(`Message: ${error.message.message.join()}`)
     }
 
-    if (message !== prevProps.message) {
-      if(message.leadAdded)
-        alert.success(message.leadAdded)
-      if(message.leadDeleted)
-        alert.success(message.leadDeleted)
-    }
+    if (message !== prevProps.message)
+      alert.success(message)
   }
 
   render() {
