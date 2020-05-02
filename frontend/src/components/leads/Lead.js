@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getLeads } from "../../actions/leads.action";
+import { getLeads, deleteLead } from "../../actions/leads.action";
 
 const mapStateToProps = (state) => ({
   leads: state.leadsReducer.leads,
 });
 
-export default connect(mapStateToProps, { getLeads })(
+export default connect(mapStateToProps, { getLeads, deleteLead })(
   class Lead extends Component {
-
-    componentDidMount(){
+    componentDidMount() {
       this.props.getLeads();
     }
 
@@ -17,7 +16,7 @@ export default connect(mapStateToProps, { getLeads })(
       return (
         <Fragment>
           <h3>Leads</h3>
-          <table className="table table-stripped">
+          <table className='table table-stripped'>
             <thead>
               <th>ID</th>
               <th>Name</th>
@@ -25,13 +24,17 @@ export default connect(mapStateToProps, { getLeads })(
               <th>Message</th>
             </thead>
             <tbody>
-              {this.props.leads.map(lead => (
+              {this.props.leads.map((lead) => (
                 <tr>
                   <td>{lead.id}</td>
                   <td>{lead.name}</td>
                   <td>{lead.email}</td>
                   <td>{lead.message}</td>
-                  <td><button className="btn btn-danger">Delete</button></td>
+                  <td>
+                    <button className='btn btn-danger' onClick={() => this.props.deleteLead(lead.id)}>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
