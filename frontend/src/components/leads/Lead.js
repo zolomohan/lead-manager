@@ -15,13 +15,11 @@ export default connect(mapStateToProps, { getLeads, deleteLead })(
     render() {
       return (
         <Fragment>
-          <div className='container card card-body my-4'>
+          <div className='container py-5'>
             <h3>Leads</h3>
-            <hr />
-            <table className='table table-striped table-bordered'>
-              <thead className='bg-primary text-light'>
+            <table className='table text-light mt-4'>
+              <thead className='bg-primary'>
                 <tr>
-                  <th>ID</th>
                   <th>Name</th>
                   <th>E-Mail</th>
                   <th>Message</th>
@@ -31,7 +29,6 @@ export default connect(mapStateToProps, { getLeads, deleteLead })(
               <tbody>
                 {this.props.leads.map((lead) => (
                   <tr key={lead.id}>
-                    <td>{lead.id}</td>
                     <td>{lead.name}</td>
                     <td>{lead.email}</td>
                     <td>{lead.message}</td>

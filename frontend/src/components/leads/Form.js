@@ -27,23 +27,22 @@ export default connect(null, { addLead })(
 
       return (
         <Fragment>
-          <div className='container card card-body mt-4'>
+          <div className='container pt-5'>
             <h3>New Lead</h3>
-            <hr />
             <form onSubmit={this.onSubmit}>
-              <div className='form-group'>
+              <div className='form-group mt-4'>
                 <label htmlFor='name'>Name</label>
-                <input type='text' className='form-control' id='name' value={name} onChange={this.onChange} />
+                <input type='text' className='form-control bg-dark text-light' id='name' value={name} onChange={this.onChange} />
               </div>
               <div className='form-group'>
                 <label htmlFor='email'>Email</label>
-                <input type='text' className='form-control' id='email' value={email} onChange={this.onChange} />
+                <input type='text' className='form-control bg-dark text-light' id='email' value={email} onChange={this.onChange} />
               </div>
               <div className='form-group'>
                 <label htmlFor='message'>Message</label>
-                <input type='text' className='form-control' id='message' value={message} onChange={this.onChange} />
+                <input type='text' className='form-control bg-dark text-light' id='message' value={message} onChange={this.onChange} />
               </div>
-              <button className='btn btn-primary'>Submit</button>
+              <button className='btn btn-primary px-5 mt-3'>Submit</button>
             </form>
           </div>
         </Fragment>
