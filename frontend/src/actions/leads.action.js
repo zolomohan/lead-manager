@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from "./types";
+import { GET_LEADS, DELETE_LEAD, ADD_LEAD, GET_ERROR } from "./types";
 
 export const getLeads = () => (dispatch) => {
   axios
@@ -11,7 +10,15 @@ export const getLeads = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      dispatch({
+        type: GET_ERROR,
+        payload: {
+          status: err.response.status,
+          message: err.response.data,
+        },
+      })
+    );
 };
 
 export const addLead = (lead) => (dispatch) => {
@@ -20,7 +27,15 @@ export const addLead = (lead) => (dispatch) => {
     .then((res) => {
       dispatch({ type: ADD_LEAD, payload: res.data });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      dispatch({
+        type: GET_ERROR,
+        payload: {
+          status: err.response.status,
+          message: err.response.data,
+        },
+      })
+    );
 };
 
 export const deleteLead = (id) => (dispatch) => {
@@ -32,5 +47,13 @@ export const deleteLead = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      dispatch({
+        type: GET_ERROR,
+        payload: {
+          status: err.response.status,
+          message: err.response.data,
+        },
+      })
+    );
 };
