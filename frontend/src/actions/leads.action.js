@@ -27,7 +27,7 @@ export const addLead = (lead) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: CREATE_MESSAGE,
-        payload: "Lead Added",
+        payload: { message: "Lead Added" },
       });
       dispatch({
         type: ADD_LEAD,
@@ -37,10 +37,7 @@ export const addLead = (lead) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: GET_ERROR,
-        payload: {
-          status: err.response.status,
-          message: err.response.data,
-        },
+        payload: { message: err.response.data },
       });
     });
 };
@@ -49,9 +46,9 @@ export const deleteLead = (id) => (dispatch) => {
   axios
     .delete(`/api/leads/${id}`)
     .then(() => {
-      dispatch({ 
+      dispatch({
         type: CREATE_MESSAGE,
-        payload: "Lead Deleted" 
+        payload: { message: "Lead Deleted" },
       });
       dispatch({
         type: DELETE_LEAD,
@@ -61,10 +58,7 @@ export const deleteLead = (id) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: GET_ERROR,
-        payload: {
-          status: err.response.status,
-          message: err.response.data,
-        },
+        payload: { message: err.response.data },
       });
     });
 };

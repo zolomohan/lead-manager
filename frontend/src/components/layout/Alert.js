@@ -3,25 +3,23 @@ import { withAlert } from "react-alert";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
-  error: state.errorReducer,
   message: state.messageReducer 
 });
 
 class Alert extends Component {
 
   componentDidUpdate(prevProps) {
-    const { error, alert, message } = this.props;
-    if (error !== prevProps.error) {
-      if(error.message.name) 
-        alert.error(`Name: ${error.message.name.join()}`)
-      if(error.message.email) 
-        alert.error(`Email: ${error.message.email.join()}`)
-      if(error.message.message) 
-        alert.error(`Message: ${error.message.message.join()}`)
+    const { alert, message } = this.props;
+    if (message.error !== prevProps.message.error) {
+      if(message.error.name) 
+        alert.error(`Name: ${message.error.name.join()}`)
+      if(message.error.email) 
+        alert.error(`Email: ${message.error.email.join()}`)
+      if(message.error.message) 
+        alert.error(`Message: ${message.error.message.join()}`)
     }
-
-    if (message !== prevProps.message)
-      alert.success(message)
+    if(message.success !== prevProps.message.success)
+        alert.success(message.success)
   }
 
   render() {

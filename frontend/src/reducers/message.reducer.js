@@ -1,11 +1,22 @@
-import { CREATE_MESSAGE } from "../actions/types";
+import { CREATE_MESSAGE, GET_ERROR } from "../actions/types";
 
-const initialState = {};
+const initialState = {
+  error: "",
+  success: "",
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case GET_ERROR:
+      return {
+        ...state,
+        error: action.payload.message
+      }
     case CREATE_MESSAGE:
-      return action.payload;
+      return {
+        ...state,
+        success: action.payload.message
+      };
     default:
       return state;
   }
