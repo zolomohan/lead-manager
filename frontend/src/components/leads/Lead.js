@@ -1,7 +1,43 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { getLeads } from "../../actions/leads.action";
 
-export default class Lead extends Component {
-  render() {
-    return <h3>Add Lead</h3>;
+const mapStateToProps = (state) => ({
+  leads: state.leadsReducer.leads,
+});
+
+export default connect(mapStateToProps, { getLeads })(
+  class Lead extends Component {
+
+    componentDidMount(){
+      this.props.getLeads();
+    }
+
+    render() {
+      return (
+        <Fragment>
+          <h3>Leads</h3>
+          <table className="table table-stripped">
+            <thead>
+              <th>ID</th>
+              <th>Name</th>
+              <th>E-Mail</th>
+              <th>Message</th>
+            </thead>
+            <tbody>
+              {this.props.leads.map(lead => (
+                <tr>
+                  <td>{lead.id}</td>
+                  <td>{lead.name}</td>
+                  <td>{lead.email}</td>
+                  <td>{lead.message}</td>
+                  <td><button className="btn btn-danger">Delete</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Fragment>
+      );
+    }
   }
-}
+);
