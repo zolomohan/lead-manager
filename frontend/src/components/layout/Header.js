@@ -1,7 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/auth.action";
 
-export default class Header extends Component {
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+});
+
+class Header extends Component {
   render() {
     return (
       <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
@@ -23,16 +29,24 @@ export default class Header extends Component {
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav ml-auto'>
-              <li className='nav-item'>
-                <Link to='/login' className='nav-link'>
-                  Login
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link to='/register' className='nav-link'>
-                  Register
-                </Link>
-              </li>
+              {this.props.isAuthenticated ? (
+                <li className='nav-item'>
+                  <button className='btn btn-link nav-link' onClick={this.props.logoutUser}>Logout</button>
+                </li>
+              ) : (
+                <Fragment>
+                  <li className='nav-item'>
+                    <Link to='/login' className='nav-link'>
+                      Login
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link to='/register' className='nav-link'>
+                      Register
+                    </Link>
+                  </li>
+                </Fragment>
+              )}
             </ul>
           </div>
         </div>
@@ -40,3 +54,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, { logoutUser })(Header);
