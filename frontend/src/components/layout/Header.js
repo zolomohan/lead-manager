@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 export default class Header extends Component {
   render() {
     return (
-      <nav class='navbar navbar-expand-lg navbar-dark bg-primary'>
+      <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
         <div className='container'>
-          <a class='navbar-brand' href='#'>
+          <a className='navbar-brand' href='#'>
             Lead Manager
           </a>
           <button
-            class='navbar-toggler'
+            className='navbar-toggler'
             type='button'
             data-toggle='collapse'
             data-target='#navbarSupportedContent'
@@ -18,17 +18,17 @@ export default class Header extends Component {
             aria-expanded='false'
             aria-label='Toggle navigation'
           >
-            <span class='navbar-toggler-icon'></span>
+            <span className='navbar-toggler-icon'></span>
           </button>
 
-          <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul class='navbar-nav ml-auto'>
-              <li class='nav-item'>
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav ml-auto'>
+              <li className='nav-item'>
                 <Link to='/login' className='nav-link'>
                   Login
                 </Link>
               </li>
-              <li class='nav-item'>
+              <li className='nav-item'>
                 <Link to='/register' className='nav-link'>
                   Register
                 </Link>

@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import Header from "./layout/Header";
 import Dashboard from "./leads/Dashboard";
-import Login from './auth/Login'
-import Register from './auth/Register'
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import PrivateRoute from "./common/PrivateRoute";
 
 import { Provider } from "react-redux";
 import store from "../store";
@@ -29,7 +30,7 @@ export default class App extends Component {
               <Alert />
               <Header />
               <Switch>
-                <Route exact path='/' component={Dashboard} />
+                <PrivateRoute exact path='/' component={Dashboard} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/Register' component={Register} />
               </Switch>
