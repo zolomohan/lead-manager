@@ -1,7 +1,7 @@
 import axios from "axios";
 import { returnError } from "./messages.action";
 
-import { AUTH_ERROR, USER_LOADED, USER_LOADING, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS } from "./types";
+import { AUTH_ERROR, USER_LOADED, USER_LOADING, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
 
 export const tokenConfig = (getState) => {
   const config = {
@@ -54,4 +54,23 @@ export const logoutUser = () => (dispatch, getState) => {
     .post("/api/auth/logout", null, tokenConfig(getState))
     .then(() => dispatch({ type: LOGOUT_SUCCESS }))
     .catch((err) => dispatch(returnError(err.response.data)));
+};
+
+export const registerUser = (username, password, email) => dispatch => {
+  axios
+    .post("/api/auth/register", JSON.stringify({ username, email, password }), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch({ type: REGISTER_FAIL });
+      dispatch(returnError(err.response.data));
+    });
 };

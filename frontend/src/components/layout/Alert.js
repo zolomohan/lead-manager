@@ -23,6 +23,8 @@ class Alert extends Component {
         alert.error(`Message: ${message.error.message.join()}`)
       if(message.error.non_field_errors)
         alert.error(message.error.non_field_errors)
+      if(message.error.passwordsNotMatch)
+        alert.error(message.error.passwordsNotMatch)
     }
     if(message.success !== prevProps.message.success)
         alert.success(message.success)
