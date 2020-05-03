@@ -17,6 +17,8 @@ class Alert extends Component {
         alert.error(`Email: ${message.error.email.join()}`)
       if(message.error.message) 
         alert.error(`Message: ${message.error.message.join()}`)
+      if(message.error.detail)
+        alert.error(message.error.detail)
     }
     if(message.success !== prevProps.message.success)
         alert.success(message.success)
