@@ -1,4 +1,4 @@
-import { CREATE_MESSAGE, GET_ERROR } from "../actions/types";
+import { ERROR_MESSAGE, SUCCESS_MESSAGE } from "../actions/types";
 
 const initialState = {
   error: "",
@@ -7,15 +7,15 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_ERROR:
+    case ERROR_MESSAGE:
       return {
         ...state,
-        error: action.payload.message
-      }
-    case CREATE_MESSAGE:
+        error: action.payload.message,
+      };
+    case SUCCESS_MESSAGE:
       return {
         ...state,
-        success: action.payload.message
+        success: action.payload.message,
       };
     default:
       return state;
