@@ -11,14 +11,18 @@ class Alert extends Component {
   componentDidUpdate(prevProps) {
     const { alert, message } = this.props;
     if (message.error !== prevProps.message.error) {
+      if(message.error.username) 
+        alert.error(`Username: ${message.error.username.join()}`)
+      if(message.error.password) 
+        alert.error(`Password: ${message.error.password.join()}`)
       if(message.error.name) 
         alert.error(`Name: ${message.error.name.join()}`)
       if(message.error.email) 
         alert.error(`Email: ${message.error.email.join()}`)
       if(message.error.message) 
         alert.error(`Message: ${message.error.message.join()}`)
-      if(message.error.detail)
-        alert.error(message.error.detail)
+      if(message.error.non_field_errors)
+        alert.error(message.error.non_field_errors)
     }
     if(message.success !== prevProps.message.success)
         alert.success(message.success)
