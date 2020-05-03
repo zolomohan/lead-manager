@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import React, { Component } from "react";
+import { loginUser } from "../../actions/auth.action";
 
-export default class Login extends Component {
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+});
+
+class Login extends Component {
   state = {
     username: "",
     password: "",
   };
 
   onChange = (event) => this.setState({ [event.target.id]: event.target.value });
-  onSubmit = () => {};
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.loginUser(this.state.username, this.state.password);
+  };
 
   render() {
+    if (this.props.isAuthenticated) return <Redirect to='/' />;
     const { username, password } = this.state;
 
     return (
@@ -34,3 +44,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, { loginUser })(Login);
