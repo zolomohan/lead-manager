@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/auth.action";
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
+  auth: state.authReducer,
 });
 
 class Header extends Component {
   render() {
+    const { user, isAuthenticated } = this.props.auth;
     return (
       <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
         <div className='container'>
@@ -29,10 +30,15 @@ class Header extends Component {
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav ml-auto'>
-              {this.props.isAuthenticated ? (
-                <li className='nav-item'>
-                  <button className='btn btn-link nav-link' onClick={this.props.logoutUser}>Logout</button>
-                </li>
+              {isAuthenticated ? (
+                <Fragment>
+                  <span className='navbar-text mr-3'>{`Welcome, ${user.username}`}</span>
+                  <li className='nav-item'>
+                    <button className='btn btn-link nav-link' onClick={this.props.logoutUser}>
+                      Logout
+                    </button>
+                  </li>
+                </Fragment>
               ) : (
                 <Fragment>
                   <li className='nav-item'>
